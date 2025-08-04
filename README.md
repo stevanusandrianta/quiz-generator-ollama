@@ -112,26 +112,12 @@ body: JSON.stringify({
 
 1. **Model not found**: Pull the required model
    ```bash
-   docker-compose exec ollama ollama pull gemma3n:e2b
+   ollama pull gemma3n:e2b
    ```
 
 2. **Out of memory**: Increase Docker memory allocation or use a smaller model
 
 3. **Slow responses**: The first question generation may take longer as the model loads
-
-### Application Issues
-
-1. **Port conflicts**: Change the port in `docker-compose.yml`
-2. **Build errors**: Ensure Docker has sufficient resources
-3. **Network issues**: Check if containers can communicate on the `app-network`
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
 
 ## License
 
