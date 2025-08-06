@@ -1,0 +1,30 @@
+[
+  {
+    "id": "q1",
+    "question": "A plant needs sunlight, water, and air to grow. Which of the following is the *most* important factor for a plant to produce its own food through photosynthesis?",
+    "options": [
+      "Water is the most important, as it helps transport nutrients.",
+      "Sunlight is the most important, as it provides the energy for photosynthesis.",
+      "Air is the most important, as it contains the carbon dioxide needed for photosynthesis.",
+      "All three (sunlight, water, and air) are equally important, but water is the most crucial for plant growth."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Photosynthesis is the process where plants use sunlight, water, and carbon dioxide to create their own food (sugar). Sunlight provides the energy to power this process. While water is necessary for transporting nutrients and air provides carbon dioxide, sunlight is the primary energy source that drives the entire process.",
+    "gradeLevel": "elementary_6",
+    "curriculum": "National"
+  },
+  {
+    "id": "q2",
+    "question": "A scientist is studying the Earth's atmosphere. Which of the following is the primary role of the ozone layer in the atmosphere?",
+    "options": [
+      "It helps to regulate the Earth's temperature by reflecting heat.",
+      "It traps water vapor, contributing to cloud formation.",
+      "It protects living things from harmful ultraviolet (UV) radiation from the sun.",
+      "It acts as a barrier, preventing meteors from reaching the Earth's surface."
+    ],
+    "correctAnswer": 2,
+    "explanation": "The ozone layer is a region of Earth's stratosphere that absorbs most of the Sun's ultraviolet (UV) radiation. UV radiation can be harmful to living organisms. Therefore, the ozone layer protects us from harmful UV rays.",
+    "gradeLevel": "elementary_6",
+    "curriculum": "National"
+  }
+]

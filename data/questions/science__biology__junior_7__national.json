@@ -1,0 +1,44 @@
+[
+  {
+    "id": "q1",
+    "question": "A scientist is studying a population of butterflies in a specific area. They notice that the butterfly population is increasing. Which of the following factors is LEAST likely to contribute to this increase, assuming other factors remain relatively constant?",
+    "options": [
+      "Increased availability of nectar sources (like flowers)",
+      "Reduced competition from other butterfly species",
+      "A decrease in the number of predators (like birds or lizards)",
+      "Changes in the temperature during the butterfly's life cycle"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Reduced competition from other butterfly species would likely *decrease* the population, not increase it.  Increased competition would limit resources and reduce population size. The other options (nectar availability, fewer predators, temperature changes) are all factors that could potentially *increase* a butterfly population. Therefore, decreased competition is the least likely to be a contributing factor.",
+    "gradeLevel": "junior_7",
+    "curriculum": "National"
+  },
+  {
+    "id": "q2",
+    "question": "A scientist is studying a population of butterflies in a specific area. They notice that the butterfly population is decreasing. Which of the following is the *most likely* reason for this decline, assuming other factors like food and shelter remain relatively stable?",
+    "options": [
+      "Increased competition for sunlight.",
+      "A sudden increase in the number of predators.",
+      "A decrease in the amount of water available.",
+      "A change in the butterfly's diet."
+    ],
+    "correctAnswer": 1,
+    "explanation": "The most likely reason for a decrease in a population, assuming other factors are stable, is an increase in predation. Predators consume individuals from the population, leading to a reduction in the overall number. While competition for sunlight or a change in diet could impact the butterfly population, they wouldn't directly cause a *decrease* in the population size as strongly as predation would.",
+    "gradeLevel": "junior_7",
+    "curriculum": "National"
+  },
+  {
+    "id": "q3",
+    "question": "A group of scientists is studying the effect of different types of light on plant growth. They find that plants exposed to blue light grow taller than plants exposed to red light. Which biological process is MOST likely responsible for this difference?",
+    "options": [
+      "Photosynthesis, where plants use light energy to create sugars.",
+      "Respiration, where plants release carbon dioxide.",
+      "Phototropism, the plant's ability to grow towards light.",
+      "Cell division, which allows plants to reproduce."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Phototropism is the directional growth of a plant in response to a stimulus, such as light. Plants grow towards light to maximize their exposure to it for photosynthesis. While photosynthesis is involved in plant growth, phototropism is the specific mechanism that causes the difference in height observed with different light colors. Red light is less efficiently absorbed by chlorophyll compared to blue light, leading to less efficient photosynthesis and therefore less stem elongation.",
+    "gradeLevel": "junior_7",
+    "curriculum": "National"
+  }
+]

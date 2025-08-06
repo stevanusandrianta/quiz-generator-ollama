@@ -1,130 +1,157 @@
-# Multiple Choice Quiz Simulator
+# AI-Powered Educational Quiz Generator
 
-A TypeScript application that simulates multiple choice questions with AI-powered question generation using Ollama. The app features a modern, responsive web interface and can generate questions on any topic.
+An innovative educational tool designed to support students in low-connectivity areas by providing AI-generated, curriculum-aligned quizzes. This application makes quality educational content accessible offline, ensuring students can continue learning effectively regardless of internet availability.
 
-## Features
+## 🎯 Mission & Goals
 
-- 🎓 **AI-Powered Questions**: Uses Ollama to generate questions on any topic
-- 📱 **Responsive Design**: Modern, mobile-friendly UI
-- ⚡ **Real-time Feedback**: Immediate feedback on answers with explanations
-- 🎯 **Progress Tracking**: Visual progress bar and score tracking
-- ⌨️ **Keyboard Shortcuts**: Use number keys (1-4) to select answers, Enter to submit
-- 🔄 **Fallback System**: Predefined questions when Ollama is unavailable
+Our primary mission is to bridge the educational gap in areas with limited internet connectivity by:
 
-## Tech Stack
+- 📚 Providing curriculum-aligned quiz content that matches school materials
+- 🌐 Enabling offline learning through local AI processing
+- 📊 Supporting personalized learning paths for different grade levels
+- 🎓 Making quality educational content accessible to all students
 
+## ✨ Key Features
+
+### Current Features
+- 🤖 **AI-Powered Question Generation**
+  - Curriculum-aligned questions using local LLM (Ollama)
+  - Support for multiple grade levels (Elementary to Senior)
+  - Topic and subtopic-specific question generation
+
+- 📚 **Educational Framework**
+  - Multiple curriculum support (National, Cambridge, IB)
+  - Grade-level appropriate content
+  - Detailed explanations for deeper understanding
+
+- 💡 **Learning Tools**
+  - Immediate feedback system
+  - Progress tracking
+  - Topic history for revision
+  - Adaptive difficulty based on grade level
+
+- 🎨 **Optimized User Experience**
+  - Dual-mode interface (Setup/Quiz)
+  - Offline-first design
+  - Keyboard shortcuts for easy navigation
+  - Mobile-responsive layout
+
+### 🚀 Planned Improvements
+
+1. **PDF Integration & Smart Content Analysis**
+   - Upload textbooks and study materials in PDF format
+   - Automatic topic/subtopic extraction from content pages
+   - Question generation based on specific textbook content
+   - Evidence-based answer validation with page references
+
+2. **Enhanced Offline Capabilities**
+   - Complete offline operation after initial setup
+   - Local storage of frequently used materials
+   - Batch generation of quizzes for offline use
+
+3. **Learning Analytics**
+   - Student progress tracking
+   - Topic mastery analysis
+   - Personalized learning recommendations
+   - Performance reports for educators
+
+## 🛠️ Technical Stack
+
+### Core Technologies
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Backend**: TypeScript, Express.js, Node.js
-- **Frontend**: Vanilla JavaScript, HTML5, CSS3
-- **AI**: Ollama (local LLM)
-- **Containerization**: Docker, Docker Compose
+- **AI Engine**: 
+  - Local LLM: Ollama
+  - Model: Gemma3n:e4b
+  - Offline processing capability
 
-## Prerequisites
+### Architecture
+```mermaid
+graph TD
+    A[Student/Teacher] --> B[Web Interface]
+    B --> C[TypeScript Backend]
+    C --> D[Ollama LLM]
+    D --> E[Local Storage]
+    E --> F[Question Bank]
+    G[PDF Upload] --> H[Content Analyzer]
+    H --> D
+```
 
-- Docker and Docker Compose installed
-- Ollama installed locally (https://ollama.ai)
-- At least 4GB of RAM (for Ollama)
+## 🚀 Quick Start
 
-## Quick Start
-
-1. **Clone the repository**
+1. **System Requirements**
    ```bash
+   - RAM: 4GB minimum (8GB recommended)
+   - Storage: 10GB free space
+   - CPU: 4 cores recommended
+   ```
+
+2. **Installation**
+   ```bash
+   # Clone the repository
    git clone <repository-url>
-   cd multiple-choice-simulator
+   cd quiz-generator-ollama
+
+   # Install dependencies
+   npm install
+
+   # Install Ollama and pull the model
+   ollama pull gemma3n:e4b
    ```
 
-2. **Start Ollama locally**
+3. **Start the Application**
    ```bash
-   # Install Ollama from https://ollama.ai
-   ollama pull gemma3n:e2b
+   # Start Ollama
    ollama serve
-   ```
 
-3. **Start the application**
-   ```bash
+   # Start the application
    npm run dev
    ```
 
-3. **Access the application**
-   - Open your browser and go to `http://localhost:3000`
-   - The API is available at `http://localhost:3000/api/quiz`
+## 👥 Target Users
 
-## Usage
+- **Students** in areas with limited internet connectivity
+- **Teachers** looking to create curriculum-aligned assessments
+- **Schools** in developing regions
+- **Educational NGOs** working in remote areas
 
-1. **Start a Quiz**: Enter a topic (e.g., "Science", "History", "Geography") and select the number of questions
-2. **Answer Questions**: Click on an option or use number keys (1-4) to select answers
-3. **Get Feedback**: See immediate feedback with explanations
-4. **View Results**: Get your final score and performance analysis
+## 💡 Usage Scenarios
 
-## API Endpoints
+### For Students
+1. Select your grade level and curriculum
+2. Choose a subject and topic from your textbook
+3. Generate and take quizzes aligned with your studies
+4. Review explanations and track your progress
 
-- `POST /api/quiz/session` - Create a new quiz session
-- `GET /api/quiz/session/:sessionId/current` - Get current question
-- `POST /api/quiz/session/:sessionId/answer` - Submit an answer
-- `POST /api/quiz/session/:sessionId/next` - Move to next question
-- `GET /api/quiz/session/:sessionId/results` - Get session results
-- `GET /api/quiz/session/:sessionId` - Get session details
+### For Teachers
+1. Upload class materials or textbooks
+2. Generate topic-specific quizzes
+3. Track student progress
+4. Create customized assessments
 
-## Development
+## 🤝 Contributing
 
-### Local Development (without Docker)
+We welcome contributions that help make education more accessible! Areas where you can help:
 
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
+- PDF processing and text extraction
+- Offline functionality improvements
+- Educational content validation
+- UI/UX enhancements
+- Documentation in multiple languages
 
-2. **Start Ollama locally**
-   ```bash
-   # Install Ollama from https://ollama.ai
-   ollama pull gemma3n:e2b
-   ollama serve
-   ```
+## 📝 License
 
-3. **Build and run**
-   ```bash
-   npm run build
-   npm start
-   ```
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Configuration
+## 🙏 Acknowledgments
 
-### Environment Variables
+- [Ollama](https://ollama.ai) for enabling local AI processing
+- [Google](https://blog.google/technology/ai/gemma-open-models/) for the Gemma model
+- The open-source community
+- Educators and students who provide valuable feedback
 
-- `PORT`: Application port (default: 3000)
-- `NODE_ENV`: Environment mode (development/production)
-- `OLLAMA_HOST`: Ollama service URL (default: http://ollama:11434)
+---
 
-### Ollama Models
-
-The application uses the `gemma3n:e2b` model by default. You can change this in `src/services/ollamaService.ts`:
-
-```typescript
-body: JSON.stringify({
-  model: 'gemma3n:e2b', // Change this to use a different model
-  prompt,
-  stream: false,
-} as OllamaRequest),
-```
-
-## Troubleshooting
-
-### Ollama Issues
-
-1. **Model not found**: Pull the required model
-   ```bash
-   ollama pull gemma3n:e2b
-   ```
-
-2. **Out of memory**: Increase Docker memory allocation or use a smaller model
-
-3. **Slow responses**: The first question generation may take longer as the model loads
-
-## License
-
-MIT License - see LICENSE file for details
-
-## Acknowledgments
-
-- [Ollama](https://ollama.ai) for providing local LLM capabilities
-- [Express.js](https://expressjs.com) for the web framework
-- [Docker](https://docker.com) for containerization 
+<div align="center">
+Made with ❤️ for accessible education
+</div>

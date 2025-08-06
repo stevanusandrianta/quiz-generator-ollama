@@ -4,6 +4,7 @@ class QuizApp {
         this.currentQuestion = null;
         this.selectedAnswer = null;
         this.apiBase = '/api/quiz';
+        document.body.classList.add('setup-mode');
         this.loadPreviousTopics();
         this.toggleLearningType();
     }
@@ -344,6 +345,9 @@ class QuizApp {
         this.currentQuestion = null;
         this.selectedAnswer = null;
         
+        document.body.classList.remove('quiz-mode');
+        document.body.classList.add('setup-mode');
+        
         document.getElementById('setupForm').style.display = 'block';
         document.getElementById('quizSection').style.display = 'none';
         document.getElementById('resultsSection').style.display = 'none';
@@ -375,6 +379,8 @@ class QuizApp {
         document.getElementById('setupForm').style.display = 'none';
         document.getElementById('quizSection').style.display = 'block';
         document.getElementById('loading').style.display = 'none';
+        document.body.classList.remove('setup-mode');
+        document.body.classList.add('quiz-mode');
     }
 
     showError(message) {

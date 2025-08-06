@@ -1,0 +1,44 @@
+[
+  {
+    "id": "q1",
+    "question": "A researcher is studying the effects of different wavelengths of light on plant growth. They expose three groups of plants to red light, blue light, and green light, respectively, and measure their growth over a period of two weeks.  Which of the following statements best explains the observed differences in plant growth, considering the role of pigments and photosynthesis?",
+    "options": [
+      "Plants exposed to red light will grow taller because red light is the most abundant wavelength in sunlight and provides the most energy for photosynthesis.",
+      "Plants exposed to blue light will grow taller because blue light is absorbed by chlorophyll and is the most efficient for carbon fixation.",
+      "Plants exposed to green light will grow taller because green light is reflected by chlorophyll and is therefore less effective for photosynthesis, leading to reduced growth.",
+      "The differences in growth are negligible because all wavelengths of light are equally effective in driving photosynthesis in plants."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Chlorophyll, the primary pigment in plants responsible for photosynthesis, absorbs red and blue light most effectively. Green light is largely reflected, meaning it's not efficiently absorbed. Therefore, plants exposed to green light will exhibit less photosynthetic activity and consequently, slower growth compared to those exposed to red or blue light. While all wavelengths contribute to photosynthesis to some extent, blue light is generally considered more efficient for carbon fixation in many plants.",
+    "gradeLevel": "senior_10",
+    "curriculum": "National"
+  },
+  {
+    "id": "q2",
+    "question": "A scientist is studying the effect of different wavelengths of light on plant growth. They expose plants to red, blue, and green light for a set period and measure their growth. Which of the following statements BEST explains why plants primarily utilize red and blue light for photosynthesis?",
+    "options": [
+      "Red and blue light have higher energy levels, allowing for faster electron transfer in chlorophyll molecules, leading to increased photosynthetic rate.",
+      "Plants evolved to maximize the absorption of green light, as it is less readily available in their natural environments, making red and blue light the most efficient wavelengths for energy capture.",
+      "Red and blue light are the only wavelengths of light that can penetrate the plant's leaf structure effectively, ensuring that the photosynthetic pigments are adequately exposed.",
+      "Plants utilize red and blue light because they are the wavelengths that are most readily reflected by chlorophyll, maximizing the amount of light absorbed for photosynthesis."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Chlorophyll, the primary photosynthetic pigment in plants, absorbs red and blue light most effectively. This is due to the specific energy levels of these wavelengths aligning with the energy levels of electrons in chlorophyll molecules. Green light is largely reflected, resulting in the green color of plants. Therefore, plants are adapted to utilize red and blue light for photosynthesis.",
+    "gradeLevel": "senior_10",
+    "curriculum": "National"
+  },
+  {
+    "id": "q3",
+    "question": "A researcher is studying the effect of different wavelengths of light on the rate of photosynthesis in aquatic plants. They find that plants exposed to blue light exhibit a higher rate of photosynthesis compared to those exposed to green light. Which of the following best explains this observation, considering the role of pigments in photosynthesis?",
+    "options": [
+      "Blue light is absorbed more efficiently by chlorophyll, leading to a faster rate of photosynthesis.",
+      "Green light is poorly absorbed by chlorophyll, resulting in a slower rate of photosynthesis.",
+      "The rate of photosynthesis is independent of the wavelength of light; all wavelengths are equally effective.",
+      "Blue light stimulates the production of more glucose, increasing the rate of photosynthesis."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Chlorophyll, the primary photosynthetic pigment in plants, absorbs blue and red light most effectively. Green light is largely reflected, making it less useful for photosynthesis. Therefore, plants exposed to blue light have more available energy for the light-dependent reactions of photosynthesis, leading to a higher rate.",
+    "gradeLevel": "senior_10",
+    "curriculum": "National"
+  }
+]
