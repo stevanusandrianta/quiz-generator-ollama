@@ -182,7 +182,7 @@ class QuizApp {
 
         this.selectedAnswer = null;
         document.getElementById('explanationContainer').style.display = 'none';
-        document.getElementById('countdownContainer').style.display = 'none';
+
         document.getElementById('submitBtn').style.display = 'none';
         document.getElementById('nextBtn').style.display = 'none';
         document.getElementById('finishBtn').style.display = 'none';
@@ -258,11 +258,8 @@ class QuizApp {
             // For the last question, show finish button
             document.getElementById('finishBtn').style.display = 'inline-block';
         } else {
-            // For other questions, auto-advance after 3 seconds
+            // For other questions, show next button
             document.getElementById('nextBtn').style.display = 'inline-block';
-            
-            // Show countdown
-            this.startCountdown();
         }
     }
 
@@ -390,25 +387,7 @@ class QuizApp {
         document.getElementById('errorContainer').style.display = 'none';
     }
 
-    startCountdown() {
-        const countdownContainer = document.getElementById('countdownContainer');
-        const countdownNumber = document.getElementById('countdownNumber');
-        
-        countdownContainer.style.display = 'block';
-        
-        let countdown = 3;
-        countdownNumber.textContent = countdown;
-        
-        const interval = setInterval(() => {
-            countdown--;
-            countdownNumber.textContent = countdown;
-            
-            if (countdown <= 0) {
-                clearInterval(interval);
-                this.nextQuestion();
-            }
-        }, 1000);
-    }
+
 }
 
 // Initialize the app
