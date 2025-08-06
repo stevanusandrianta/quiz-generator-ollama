@@ -1,25 +1,117 @@
 import { Ollama } from 'ollama';
 import { OllamaRequest, OllamaResponse } from '../types';
 
+interface GradeLevelInfo {
+  description: string;
+  age: number;
+  complexity: string;
+}
+
 export class OllamaService {
   private client: Ollama;
+  private gradeLevelMap: Record<string, GradeLevelInfo> = {
+    'elementary_1': {
+      description: 'First Grade Elementary School',
+      age: 6,
+      complexity: 'basic concepts with simple vocabulary and direct questions'
+    },
+    'elementary_2': {
+      description: 'Second Grade Elementary School',
+      age: 7,
+      complexity: 'foundational concepts with clear, straightforward questions'
+    },
+    'elementary_3': {
+      description: 'Third Grade Elementary School',
+      age: 8,
+      complexity: 'developing concepts with some problem-solving elements'
+    },
+    'elementary_4': {
+      description: 'Fourth Grade Elementary School',
+      age: 9,
+      complexity: 'intermediate concepts with multi-step thinking'
+    },
+    'elementary_5': {
+      description: 'Fifth Grade Elementary School',
+      age: 10,
+      complexity: 'advanced elementary concepts with analytical thinking'
+    },
+    'elementary_6': {
+      description: 'Sixth Grade Elementary School',
+      age: 11,
+      complexity: 'complex elementary concepts with logical reasoning'
+    },
+    'junior_7': {
+      description: 'Seventh Grade Junior High School',
+      age: 12,
+      complexity: 'introductory secondary concepts with abstract thinking'
+    },
+    'junior_8': {
+      description: 'Eighth Grade Junior High School',
+      age: 13,
+      complexity: 'intermediate secondary concepts with analytical reasoning'
+    },
+    'junior_9': {
+      description: 'Ninth Grade Junior High School',
+      age: 14,
+      complexity: 'advanced secondary concepts with critical analysis'
+    },
+    'senior_10': {
+      description: 'Tenth Grade Senior High School',
+      age: 15,
+      complexity: 'foundational high school concepts with complex problem-solving'
+    },
+    'senior_11': {
+      description: 'Eleventh Grade Senior High School',
+      age: 16,
+      complexity: 'advanced high school concepts with deep analytical thinking'
+    },
+    'senior_12': {
+      description: 'Twelfth Grade Senior High School',
+      age: 17,
+      complexity: 'college-preparatory concepts with sophisticated reasoning'
+    }
+  };
 
   constructor(baseUrl: string = 'http://localhost:11434') {
     this.client = new Ollama({ host: baseUrl });
   }
 
-  async generateQuestion(topic: string): Promise<string> {
-    const prompt = `Generate a unique multiple choice question about ${topic}. 
-  The question should be different from typical questions and should test understanding.
+  private getGradeLevelInfo(gradeLevel: string): GradeLevelInfo {
+    return this.gradeLevelMap[gradeLevel] || {
+      description: 'General Student Level',
+      age: 12,
+      complexity: 'moderate difficulty with clear explanations'
+    };
+  }
+
+  async generateQuestion(topic: string, subtopic?: string, gradeLevel?: string, curriculum?: string): Promise<string> {
+    const gradeInfo = this.getGradeLevelInfo(gradeLevel || '');
+    const curriculumInfo = curriculum ? ` following the ${curriculum} curriculum` : '';
+
+    const prompt = `Generate a unique multiple choice question about ${topic}${subtopic ? ` focusing on the subtopic of ${subtopic}` : ''}. 
+  The question should be appropriate for ${gradeInfo.description}${curriculumInfo}.
+  
+  Consider these grade-level guidelines:
+  - Vocabulary and language complexity should be appropriate for ${gradeInfo.age}-year-old students
+  - Concepts should align with ${gradeInfo.description} learning objectives
+  - Question complexity should match ${gradeInfo.complexity}
+  
   Format the response as JSON with the following structure:
   {
     "question": "Your unique question here?",
     "options": ["Option A", "Option B", "Option C", "Option D"],
     "correctAnswer": 0,
-    "explanation": "Brief explanation of why this is correct"
+    "explanation": "Brief explanation of why this is correct",
+    "gradeLevel": "${gradeLevel || ''}",
+    "curriculum": "${curriculum || ''}"
   }
   
-  Make sure the question is educational, the options are plausible, and the question is unique and interesting.`;
+  Make sure:
+  - The question is educational and aligns with standard curriculum objectives
+  - The options are plausible and grade-appropriate
+  - The explanation is clear and helps student understanding
+  - The question is unique and encourages critical thinking at the appropriate level
+  ${subtopic ? `\n  The question must be specifically about ${subtopic} within the broader topic of ${topic}.` : ''}`;
   
     try {
       const result = await this.client.generate({

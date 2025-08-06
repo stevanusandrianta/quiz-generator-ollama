@@ -224,6 +224,91 @@
             color: #1b5e20;
         }
 
+        .divider {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            color: #666;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .previous-topics {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .previous-topics h3 {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .topics-list {
+            display: grid;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .topic-item {
+            background: #f8f9fa;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-item:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .topic-info {
+            flex-grow: 1;
+        }
+
+        .topic-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .topic-subtitle {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .topic-count {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -252,6 +337,64 @@
                 <input type="text" id="topic" placeholder="e.g., Science, History, Geography..." value="Science">
             </div>
             <div class="form-group">
+                <label for="subtopic">Subtopic (optional):</label>
+                <input type="text" id="subtopic" placeholder="e.g., Physics, World War II, European Countries...">
+            </div>
+            <div class="form-group">
+                <label for="learningType">Learning Type:</label>
+                <select id="learningType" onchange="app.toggleLearningType()">
+                    <option value="curriculum">Curriculum-Based Learning</option>
+                    <option value="general">General Learning</option>
+                </select>
+            </div>
+            
+            <div id="curriculumSection">
+                <div class="form-group">
+                    <label for="gradeLevel">Grade Level:</label>
+                    <select id="gradeLevel">
+                        <optgroup label="Elementary School">
+                            <option value="elementary_1">Grade 1</option>
+                            <option value="elementary_2">Grade 2</option>
+                            <option value="elementary_3">Grade 3</option>
+                            <option value="elementary_4">Grade 4</option>
+                            <option value="elementary_5">Grade 5</option>
+                            <option value="elementary_6">Grade 6</option>
+                        </optgroup>
+                        <optgroup label="Junior High School">
+                            <option value="junior_7">Grade 7</option>
+                            <option value="junior_8">Grade 8</option>
+                            <option value="junior_9">Grade 9</option>
+                        </optgroup>
+                        <optgroup label="Senior High School">
+                            <option value="senior_10">Grade 10</option>
+                            <option value="senior_11">Grade 11</option>
+                            <option value="senior_12">Grade 12</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="curriculum">Curriculum:</label>
+                    <select id="curriculum">
+                        <option value="">Select Curriculum</option>
+                        <option value="National">National Curriculum</option>
+                        <option value="Cambridge">Cambridge Curriculum</option>
+                        <option value="IB">International Baccalaureate</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="generalSection" style="display: none;">
+                <div class="form-group">
+                    <label for="difficultyLevel">Difficulty Level:</label>
+                    <select id="difficultyLevel">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="questionCount">Number of Questions:</label>
                 <select id="questionCount">
                     <option value="3">3 Questions</option>
@@ -260,6 +403,16 @@
                 </select>
             </div>
             <button class="btn" onclick="startQuiz()">Start Quiz</button>
+            
+            <div class="divider">or</div>
+            
+            <!-- Previous Topics -->
+            <div id="previousTopics" class="previous-topics">
+                <h3>Previous Topics</h3>
+                <div id="topicsList" class="topics-list">
+                    <!-- Topics will be populated here -->
+                </div>
+            </div>
         </div>
 
         <!-- Loading -->

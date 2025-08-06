@@ -4,11 +4,100 @@ class QuizApp {
         this.currentQuestion = null;
         this.selectedAnswer = null;
         this.apiBase = '/api/quiz';
+        this.loadPreviousTopics();
+        this.toggleLearningType();
+    }
+
+    toggleLearningType() {
+        const learningType = document.getElementById('learningType').value;
+        const curriculumSection = document.getElementById('curriculumSection');
+        const generalSection = document.getElementById('generalSection');
+        
+        if (learningType === 'curriculum') {
+            curriculumSection.style.display = 'block';
+            generalSection.style.display = 'none';
+        } else {
+            curriculumSection.style.display = 'none';
+            generalSection.style.display = 'block';
+        }
+    }
+
+    async loadPreviousTopics() {
+        try {
+            const response = await fetch(`${this.apiBase}/topics`);
+            if (!response.ok) {
+                throw new Error('Failed to load topics');
+            }
+            
+            const topics = await response.json();
+            this.displayPreviousTopics(topics);
+        } catch (error) {
+            console.error('Error loading topics:', error);
+        }
+    }
+
+    displayPreviousTopics(topics) {
+        const topicsList = document.getElementById('topicsList');
+        topicsList.innerHTML = '';
+
+        if (topics.length === 0) {
+            topicsList.innerHTML = '<p>No previous topics found</p>';
+            return;
+        }
+
+        topics.forEach(topic => {
+            const topicElement = document.createElement('div');
+            topicElement.className = 'topic-item';
+            topicElement.onclick = () => this.startQuizFromTopic(topic);
+
+            topicElement.innerHTML = `
+                <div class="topic-info">
+                    <div class="topic-title">${topic.topic}</div>
+                    ${topic.subtopic ? `<div class="topic-subtitle">${topic.subtopic}</div>` : ''}
+                </div>
+                <span class="topic-count">${topic.questionCount} questions</span>
+            `;
+
+            topicsList.appendChild(topicElement);
+        });
+    }
+
+    async startQuizFromTopic(topicInfo) {
+        document.getElementById('topic').value = topicInfo.topic;
+        if (topicInfo.subtopic) {
+            document.getElementById('subtopic').value = topicInfo.subtopic;
+        }
+        if (topicInfo.gradeLevel) {
+            document.getElementById('gradeLevel').value = topicInfo.gradeLevel;
+        }
+        if (topicInfo.curriculum) {
+            document.getElementById('curriculum').value = topicInfo.curriculum;
+        }
+        await this.startQuiz();
     }
 
     async startQuiz() {
         const topic = document.getElementById('topic').value.trim();
+        const subtopic = document.getElementById('subtopic').value.trim();
+        const learningType = document.getElementById('learningType').value;
         const questionCount = parseInt(document.getElementById('questionCount').value);
+
+        let gradeLevel = 'general';
+        let curriculum = undefined;
+
+        if (learningType === 'curriculum') {
+            gradeLevel = document.getElementById('gradeLevel').value;
+            curriculum = document.getElementById('curriculum').value;
+        } else {
+            // Map difficulty levels to grade levels for consistent storage
+            const difficultyMap = {
+                'beginner': 'elementary_3',     // Around 3rd grade level
+                'intermediate': 'junior_7',      // Around 7th grade level
+                'advanced': 'senior_10',         // Around 10th grade level
+                'expert': 'senior_12'           // Around 12th grade level
+            };
+            gradeLevel = difficultyMap[document.getElementById('difficultyLevel').value] || 'general';
+        }
 
         if (!topic) {
             this.showError('Please enter a topic for the quiz.');
@@ -24,7 +113,13 @@ class QuizApp {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ topic, questionCount }),
+                body: JSON.stringify({ 
+                    topic, 
+                    subtopic, 
+                    gradeLevel,
+                    curriculum: curriculum || undefined,
+                    questionCount 
+                }),
             });
 
             if (!response.ok) {
@@ -257,6 +352,21 @@ class QuizApp {
         document.getElementById('resultsSection').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
         document.getElementById('errorContainer').style.display = 'none';
+        
+        // Clear form fields
+        document.getElementById('topic').value = '';
+        document.getElementById('subtopic').value = '';
+        document.getElementById('learningType').value = 'curriculum';
+        document.getElementById('gradeLevel').value = 'elementary_1';
+        document.getElementById('curriculum').value = '';
+        document.getElementById('difficultyLevel').value = 'beginner';
+        document.getElementById('questionCount').value = '5';
+        
+        // Reset sections visibility
+        this.toggleLearningType();
+        
+        // Refresh the topics list
+        this.loadPreviousTopics();
     }
 
     showLoading(show) {

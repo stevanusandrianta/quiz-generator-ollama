@@ -1,19 +1,21 @@
 import { Router, Request, Response } from 'express';
 import { QuizService } from '../services/quizService';
+import { StorageService } from '../services/storageService';
 
 const router = Router();
 const quizService = new QuizService();
+const storageService = new StorageService();
 
 // Create a new quiz session
 router.post('/session', async (req: Request, res: Response) => {
   try {
-    const { topic, questionCount = 5 } = req.body;
+    const { topic, subtopic, gradeLevel, curriculum, questionCount = 5 } = req.body;
     
     if (!topic) {
       return res.status(400).json({ error: 'Topic is required' });
     }
 
-    const session = await quizService.createSession(topic, questionCount);
+    const session = await quizService.createSession(topic, subtopic, gradeLevel, curriculum, questionCount);
     res.json(session);
   } catch (error) {
     console.error('Error creating session:', error);
@@ -99,6 +101,17 @@ router.get('/session/:sessionId', (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error getting session:', error);
     res.status(500).json({ error: 'Failed to get session' });
+  }
+});
+
+// Get available topics
+router.get('/topics', async (req: Request, res: Response) => {
+  try {
+    const topics = await storageService.listTopics();
+    res.json(topics);
+  } catch (error) {
+    console.error('Error getting topics:', error);
+    res.status(500).json({ error: 'Failed to get topics' });
   }
 });
 
